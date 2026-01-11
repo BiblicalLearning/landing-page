@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblical Learning | Discipleship Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF8F5;
+            --warm-white: #FFFEFB;
+            --ink: #1a1a18;
+            --ink-light: #3d3d38;
+            --gold: #B8860B;
+            --gold-soft: #D4A84B;
+            --burgundy: #722F37;
+            --navy: #1e3a5f;
+            --navy-light: #2d4a6f;
+            --navy-dark: #152a45;
+            --sage: #7C8B6F;
+            --parchment: #F5F0E6;
+            --border-subtle: rgba(26, 26, 24, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--warm-white);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            background: rgba(255, 254, 251, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--navy);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 2rem 4rem;
+            background: 
+                linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(30, 58, 95, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 60%, rgba(184, 134, 11, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 80%, rgba(114, 47, 55, 0.04) 0%, transparent 35%);
+            pointer-events: none;
+            animation: subtleShift 20s ease-in-out infinite;
+        }
+
+        @keyframes subtleShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(2%, 1%) rotate(1deg); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e3a5f' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: gentleFloat 4s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(30, 58, 95, 0.15));
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--burgundy);
+            position: relative;
+        }
+
+        .hero h1 em::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+            opacity: 0.6;
+            border-radius: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--ink-light);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .hero-verse {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--navy);
+            padding: 1.75rem 2rem;
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--parchment) 100%);
+            border-left: 4px solid var(--gold);
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: left;
+            box-shadow: 0 8px 32px rgba(30, 58, 95, 0.08), 0 2px 8px rgba(184, 134, 11, 0.08);
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .hero-verse::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1;
+        }
+
+        .hero-verse cite {
+            display: block;
+            font-style: normal;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            color: var(--gold);
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 28px;
+            height: 28px;
+            border-right: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            transform: rotate(45deg);
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 4rem 2rem;
+            background: var(--cream);
+        }
+
+        .mission-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .mission h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            color: var(--navy);
+        }
+
+        .mission-text {
+            font-size: 1.1rem;
+            color: var(--ink-light);
+            line-height: 1.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .mission-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .pillar {
+            padding: 2rem 1.5rem;
+            background: linear-gradient(145deg, var(--warm-white) 0%, #fff 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(30, 58, 95, 0.06), 0 1px 3px rgba(0,0,0,0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--navy), var(--gold));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(30, 58, 95, 0.12), 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .pillar:hover::before {
+            opacity: 1;
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.08) 0%, rgba(184, 134, 11, 0.08) 100%);
+            padding: 0.75rem;
+            border-radius: 12px;
+        }
+
+        .pillar h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+
+        .pillar p {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            padding: 4rem 2rem;
+            background: var(--warm-white);
+        }
+
+        .courses-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .courses-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .courses-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        .category {
+            margin-bottom: 2.5rem;
+        }
+
+        .category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--parchment);
+        }
+
+        .category-icon {
+            font-size: 1.25rem;
+        }
+
+        .category-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .course-card {
+            display: block;
+            background: linear-gradient(145deg, var(--cream) 0%, var(--parchment) 100%);
+            padding: 1.5rem;
+            text-decoration: none;
+            border: 1px solid rgba(30, 58, 95, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(30, 58, 95, 0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--navy), var(--gold));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .course-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .course-card:hover {
+            background: linear-gradient(145deg, var(--warm-white) 0%, var(--cream) 100%);
+            transform: translateY(-4px) translateX(2px);
+            box-shadow: 0 12px 32px rgba(30, 58, 95, 0.1), 0 4px 12px rgba(184, 134, 11, 0.08);
+            border-color: var(--navy);
+        }
+
+        .course-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .course-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-card p {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-card .arrow {
+            position: absolute;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            font-size: 1.25rem;
+            color: var(--navy);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .course-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            padding: 3rem 2rem;
+            background: var(--parchment);
+            text-align: center;
+        }
+
+        .coming-soon-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .coming-soon h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--navy);
+        }
+
+        .coming-soon p {
+            color: var(--ink-light);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+            color: var(--cream);
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        footer .logo {
+            color: var(--cream);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--gold-soft);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--cream);
+        }
+
+        .support-link {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--gold);
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .support-link:hover {
+            background: var(--gold-soft);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .mission-pillars {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">Biblical<span>Learning</span></a>
+            <nav>
+                <a href="#mission">Mission</a>
+                <a href="#courses">Courses</a>
+                <a href="https://x.com/ServingNChrist" target="_blank">@ServingNChrist</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">📖</div>
+            <h1>Equipping Leaders to <em>Disciple Nations</em></h1>
+            <p class="hero-subtitle">Free interactive Bible studies for pastors, small group leaders, and anyone called to help others grow in Christ.</p>
+            <blockquote class="hero-verse">
+                "And the things you have heard me say in the presence of many witnesses entrust to reliable people who will also be qualified to teach others."
+                <cite>— 2 Timothy 2:2</cite>
+            </blockquote>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <section class="mission" id="mission">
+        <div class="mission-inner">
+            <p class="section-label">Our Mission</p>
+            <h2>Providing tools for those who teach, lead, and shepherd others toward deeper faith</h2>
+            <p class="mission-text">
+                These resources exist to serve the Church. Every study is designed to be used in small groups, Sunday schools, discipleship programs, or personal study. They're interactive, Scripture-saturated, and built to help people not just learn about God's Word—but to be transformed by it.
+            </p>
+            <div class="mission-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">🎯</div>
+                    <h3>Learn</h3>
+                    <p>Interactive studies that engage the mind and heart with God's truth through Scripture.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🔥</div>
+                    <h3>Teach</h3>
+                    <p>Ready-to-use materials for pastors, leaders, and anyone discipling others in the faith.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🌱</div>
+                    <h3>Grow</h3>
+                    <p>Studies designed to produce lasting spiritual fruit—not just head knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses-section" id="courses">
+        <div class="courses-inner">
+            <div class="courses-header">
+                <p class="section-label">Resources</p>
+                <h2>Discipleship Studies</h2>
+            </div>
+
+            <!-- Theology & Doctrine -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">✝️</span>
+                    <h3>Theology & Doctrine</h3>
+                </div>
+                <div class="course-grid">
+                    <a href="https://biblicallearning.github.io/holy-spirit/" target="_blank" class="course-card">
+                        <h4>The Holy Spirit</h4>
+                        <p>God's presence from Eden to now—tracing the Spirit's work through all of Scripture.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://biblicallearning.github.io/salvation-discipleship/" target="_blank" class="course-card">
+                        <h4>Salvation</h4>
+                        <p>Understanding the fullness of what Christ accomplished and what it means for believers.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kingdom Studies -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">👑</span>
+                    <h3>Kingdom Studies</h3>
+                </div>
+                <div class="course-grid">
+                    <a href="https://biblicallearning.github.io/kingdom-of-god-discipleship/" target="_blank" class="course-card">
+                        <h4>The Kingdom of God</h4>
+                        <p>Discover the present reality of Christ's Kingdom and your place in it.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://biblicallearning.github.io/kingdom-made-visible/" target="_blank" class="course-card">
+                        <h4>Kingdom Made Visible</h4>
+                        <p>How God's Kingdom is manifested and revealed through His people today.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Spiritual Warfare & Worldview -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">⚔️</span>
+                    <h3>Spiritual Warfare & Worldview</h3>
+                </div>
+                <div class="course-grid">
+                    <a href="https://biblicallearning.github.io/enemys-unchanging-strategy/" target="_blank" class="course-card">
+                        <h4>The Enemy's Unchanging Strategy</h4>
+                        <p>Understanding Satan's tactics from Genesis to today—and how to stand firm.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://biblicallearning.github.io/sanctity-of-life/" target="_blank" class="course-card">
+                        <h4>Sanctity of Life</h4>
+                        <p>A biblical foundation for understanding the value of human life from conception.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Biblical Reference -->
+            <div class="category">
+                <div class="category-header">
+                    <span class="category-icon">🗺️</span>
+                    <h3>Biblical Reference & Study Aids</h3>
+                </div>
+                <div class="course-grid">
+                    <a href="https://biblicallearning.github.io/pauls-missionary-journeys/" target="_blank" class="course-card">
+                        <h4>Paul's Missionary Journeys</h4>
+                        <p>Interactive maps tracing the apostle's travels and the spread of the early church.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="https://biblicallearning.github.io/twelve-tribes-map/" target="_blank" class="course-card">
+                        <h4>The Twelve Tribes of Israel</h4>
+                        <p>Visual reference for understanding the tribal divisions and their biblical significance.</p>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="coming-soon">
+        <div class="coming-soon-inner">
+            <h3>More Studies Coming</h3>
+            <p>New discipleship resources are continually being developed. Follow <a href="https://x.com/ServingNChrist" target="_blank" style="color: var(--gold);">@ServingNChrist</a> for updates.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="#" class="logo">Biblical<span>Learning</span></a>
+            <p class="footer-tagline">"Seek first the Kingdom, and watch God move mountains."</p>
+            <div class="footer-links">
+                <a href="https://x.com/ServingNChrist" target="_blank">𝕏 @ServingNChrist</a>
+            </div>
+            <a href="https://cash.app/$ServingNChrist" target="_blank" class="support-link">Support This Ministry</a>
+            <p class="copyright">Created by Zachariah Adams</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
